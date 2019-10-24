@@ -1,0 +1,7 @@
+{
+  "appId": "com.katincorporated.giflist",
+  "appName": "giflist",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

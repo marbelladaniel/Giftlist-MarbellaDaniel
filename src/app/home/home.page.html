@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>
+      <form [formGroup]="subredditForm">
+        <ion-searchbar placeholder="subreddit..." formControlName="subredditControl" value=""></ion-searchbar>
+      </form>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openSettings()">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <div tappable (click)="playVideo($event, post)" *ngFor="let post of redditService.posts">
+      <ion-item>
+        <video loop [src]="post.data.url" [poster]="post.data.snapshot"></video>
+      </ion-item>
+      <ion-list-header (click)="showComments(post)" style="text-align: left;">
+        <ion-label>{{ post.data.title }}</ion-label>
+      </ion-list-header>
+    </div>
+    <ion-item *ngIf="redditService.loading" lines="none" style="text-align: center;">
+      <ion-spinner name="lines-small"></ion-spinner>
+    </ion-item>
+  </ion-list>
+  <ion-button color="light" expand="full" (click)="loadMore()" *ngIf="redditService.posts.length">Load More...
+  </ion-button>
+</ion-content>
